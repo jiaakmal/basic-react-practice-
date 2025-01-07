@@ -1,54 +1,62 @@
-import reactImg from './assets/react-core-concepts.png'
-import componentsImg from './assets/components.png'
+import reactImg from "./assets/react-core-concepts.png";
+import componentsImg from "./assets/components.png";
+import { CORE_CONCEPTS } from "./data";
 
-const reactDescription = ['Core' , 'Fundamental' , 'Curtail']
-function randomInt(max){
-  return Math.floor(Math.random() * (max+1));
+const reactDescription = ["Core", "Fundamental", "Curtail"];
+function randomInt(max) {
+  return Math.floor(Math.random() * (max + 1));
 }
-export function Header(){
-  const description = reactDescription[randomInt(2)]
+export function Header() {
+  const description = reactDescription[randomInt(2)];
   return (
     <header>
-        <img src={reactImg} />
-        <h1>React Essentials</h1>
-        <p>
-          {description} React concepts you will need for almost any app you are
-          going to build!
-        </p>
-      </header>
-    );
+      <img src={reactImg} />
+      <h1>React Essentials</h1>
+      <p>
+        {description} React concepts you will need for almost any app you are
+        going to build!
+      </p>
+    </header>
+  );
 }
-// React call these functions and pass value to this props/argument under the hood . We only use 
-// these functions just like html elements ... And value used as props are in the form of objects 
-// key value pair..
-function CoreConcept(props) {
+/* React call these functions and pass value to this props/argument under the hood . We only use 
+ these functions just like html elements ... And value used as props are in the form of objects 
+ key value pair..
+ function CoreConcept(props) {
   return (
    <li>
     <img src={props.image} alt={props.title} />
     <h3>{props.title}</h3>
     <p>{props.description}</p>
-   </li>
-  );
+    </li>
+  );*/
 
-  
-}
+  function CoreConcept({image , title , description}) {
+    return (
+     <li>
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>{description}</p>
+      </li>
+    );
+  }
 
 function App() {
   return (
     <div>
-      <Header/>
+      <Header />
       <main>
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept 
-            title="Components" 
-            description="The core UI building blocks"
-            image={componentsImg}
+            <CoreConcept
+              title={CORE_CONCEPTS[0].title}
+              description={CORE_CONCEPTS[0].description}
+              image={CORE_CONCEPTS[0].image}
             />
-            <CoreConcept />
-            <CoreConcept />
-            <CoreConcept />
+            <CoreConcept { ...CORE_CONCEPTS[1]} />
+            <CoreConcept { ...CORE_CONCEPTS[2]} />
+            <CoreConcept { ...CORE_CONCEPTS[3]} />
           </ul>
         </section>
         <h2>Time to get started!</h2>
@@ -57,4 +65,4 @@ function App() {
   );
 }
 
-export default App;
+export default App ;
