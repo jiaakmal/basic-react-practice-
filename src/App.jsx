@@ -1,45 +1,10 @@
-import reactImg from "./assets/react-core-concepts.png";
-import componentsImg from "./assets/components.png";
+import { Header } from "./components/Header";
 import { CORE_CONCEPTS } from "./data";
+import { CoreConcept } from "./components/CoreConcept";
+import TabButton from "./components/TabButton";
 
-const reactDescription = ["Core", "Fundamental", "Curtail"];
-function randomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-export function Header() {
-  const description = reactDescription[randomInt(2)];
-  return (
-    <header>
-      <img src={reactImg} />
-      <h1>React Essentials</h1>
-      <p>
-        {description} React concepts you will need for almost any app you are
-        going to build!
-      </p>
-    </header>
-  );
-}
-/* React call these functions and pass value to this props/argument under the hood . We only use 
- these functions just like html elements ... And value used as props are in the form of objects 
- key value pair..
- function CoreConcept(props) {
-  return (
-   <li>
-    <img src={props.image} alt={props.title} />
-    <h3>{props.title}</h3>
-    <p>{props.description}</p>
-    </li>
-  );*/
 
-  function CoreConcept({image , title , description}) {
-    return (
-     <li>
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-      </li>
-    );
-  }
+
 
 function App() {
   return (
@@ -59,7 +24,15 @@ function App() {
             <CoreConcept { ...CORE_CONCEPTS[3]} />
           </ul>
         </section>
-        <h2>Time to get started!</h2>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton>Components</TabButton>
+            <TabButton>JSX</TabButton>
+            <TabButton>Props</TabButton>
+            <TabButton>State</TabButton>
+          </menu>
+        </section>
       </main>
     </div>
   );
